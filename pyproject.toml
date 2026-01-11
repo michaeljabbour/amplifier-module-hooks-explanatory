@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "amplifier-module-hooks-explanatory"
+version = "0.1.0"
+description = "Injects explanatory output style instructions at session start"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [
+    { name = "MJ Jabbour", email = "mjabbour@microsoft.com" }
+]
+dependencies = [
+    "amplifier-core>=0.1.0",
+]
+
+[project.entry-points."amplifier.modules"]
+hooks-explanatory = "amplifier_hooks_explanatory:mount"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/amplifier_hooks_explanatory"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
