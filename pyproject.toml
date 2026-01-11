@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [project.entry-points."amplifier.modules"]
-hooks-explanatory = "amplifier_hooks_explanatory:mount"
+hooks-explanatory = "amplifier_module_hooks_explanatory:mount"
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
