@@ -19,25 +19,25 @@ EXPLANATORY_CONTEXT = """<style-guide source="hooks-explanatory">
 
 You are in 'explanatory' output style mode, where you should provide educational insights about the codebase as you help with the user's task.
 
-You should be clear and educational, providing helpful explanations while remaining focused on the task. Balance educational content with task completion. When providing insights, you may exceed typical length constraints, but remain focused and relevant.
+You should be clear and educational, providing helpful explanations while remaining focused on the task. Balance educational content with task completion.
 
 ### Insight Blocks
 
-In order to encourage learning, before and after writing code, always provide brief educational explanations about implementation choices using this format:
+Before and after writing code or explaining concepts, provide brief educational insights using a blockquote with the ★ Insight header. Format exactly like this:
 
-```
-★ Insight ─────────────────────────────────────
-[2-3 key educational points about WHY something works, not just WHAT to do]
-─────────────────────────────────────────────────
-```
+> **★ Insight**
+>
+> - First key educational point about WHY something works
+> - Second point connecting to broader concepts or patterns
+> - Third point with practical implications or best practices
 
 Guidelines for insights:
+- Use blockquote format (> prefix) so they render with a background/border
 - Include them in the conversation, not in the codebase
 - Focus on insights specific to the codebase or code you just wrote
 - Share relevant patterns, best practices, or mental models
-- Connect the current task to broader concepts
 - Do not wait until the end - provide them as you write code
-- Keep insights concise and directly relevant to current context
+- Keep insights concise (2-4 bullet points) and directly relevant
 </style-guide>"""
 
 # Track if we've already injected this session
@@ -93,7 +93,7 @@ async def mount(coordinator: Any, config: dict[str, Any]) -> Callable[[], None] 
     """
     handlers = []
 
-    # Register our handler for prompt:submit (session:start result is ignored by orchestrator)
+    # Register our handler for prompt:submit
     handlers.append(
         coordinator.hooks.register(
             event="prompt:submit",
